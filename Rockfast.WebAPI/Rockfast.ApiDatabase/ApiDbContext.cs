@@ -11,14 +11,17 @@ namespace Rockfast.ApiDatabase
     public class ApiDbContext : DbContext
     {
         public DbSet<Todo> Todos { get; set; }
+        public DbSet<User> User { get; set; }
 
         public ApiDbContext(DbContextOptions options)
             :base(options)
         {
             this.Database.EnsureCreated();
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
         }
     }
 }

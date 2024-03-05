@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rockfast.ApiDatabase.DomainModels
 {
+    [Table("Todo", Schema = "dbo")]
     public class Todo
     {
         [Key]
@@ -18,5 +19,7 @@ namespace Rockfast.ApiDatabase.DomainModels
         public DateTime? DateCreated { get; set; }
         public bool Complete { get; set; }
         public DateTime? DateCompleted { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }
