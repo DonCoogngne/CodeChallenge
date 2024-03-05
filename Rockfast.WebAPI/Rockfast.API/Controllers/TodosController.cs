@@ -160,6 +160,21 @@ namespace Rockfast.API.Controllers
         }
 
         [HttpGet]
+        [Route("GeTodoListAll")]
+        public async Task<IEnumerable<UserTodoVM>> GeTodoListAll()
+        {
+            try
+            {
+                var result = await this._todoService.GetToDoListAll();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
         [Route("GetAllUsers")]
         public async Task<IEnumerable<UserVM>> GetAllUsers()
         {

@@ -17,5 +17,6 @@ namespace Rockfast.ServiceInterfaces
         Task DeleteAsync(int id);
         Task<UserTodoVM> GetUserToDoList(int uerid);
         Task<IEnumerable<User>> GetAllUserAsync();
+        Task<IEnumerable<UserTodoVM>> GetToDoListAll();
     }
 }

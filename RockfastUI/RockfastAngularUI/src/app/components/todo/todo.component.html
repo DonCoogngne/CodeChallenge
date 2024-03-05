@@ -1,0 +1,103 @@
+<!--<div class="ui-grid-b" style="width: 25%; float: left">
+    <div class="leftDiv"> 
+      <label>Users</label>
+      <table  *ngIf="usersList" class="table">
+          <thead>
+              <tr>
+                  <th style="display:none;">Id</th>
+                  <th>Name</th>                         
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let user of usersList" (click)="getTodoListA(user.userId)"> 
+                <td style="display:none;">{{user.userId}}</td> 
+                <td>{{user.name}}</td> 
+              </tr>
+          </tbody>
+      </table>
+      <p *ngIf="!usersList">No Users Found!</p>
+    </div>
+  </div>-->
+
+
+  <!--<div class="ui-grid-b" style="width: 50%; float: right">
+    <div class="leftDiv"> 
+      <label>Todo List</label>
+      <table *ngIf="todoList" class="table">
+          <thead>
+              <tr>
+                <th style="display:none;">Id</th>
+                <th>Name</th>                         
+                <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let todo of todoList" > 
+                <td style="display:none;">{{todo.Id}}</td> 
+                <td>{{todo.Name}}</td> 
+              </tr>
+          </tbody>
+      </table>
+      <p *ngIf="!todoList">No TodoList Found!</p>
+    </div>
+  </div>-->
+  <div class="ui-grid-b" style="width: 25%; float: left">
+    <div class="leftDiv"> 
+      <h2>Users</h2>
+      <div *ngFor="let user of todoLists">
+        <div (click)="selectUser(user.userId)" [class.selected]="selectedUserId === user.userId">
+          {{ user.name }}
+        </div>
+      </div>
+      <p *ngIf="!todoLists">No Users Found!</p>
+    </div>
+  </div>
+
+  <div class="ui-grid-b" style="width: 50%; float: right">
+    <div class="leftDiv"> 
+      <div *ngIf="selectedUserId !== null">
+        <h2>Todo List</h2>
+        <div *ngFor="let user of todoLists">
+          <div *ngIf="user.userId === selectedUserId">
+            <ul>
+              <li *ngFor="let todo of user.toDoList">
+                {{ todo.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p *ngIf="!todoList">No TodoList Found!</p>
+    </div>
+  </div>
+
+
+
+<!--<div>
+  <h2>User Grid</h2>
+  <div *ngFor="let user of todoLists">
+    <div (click)="selectUser(user.userId)" [class.selected]="selectedUserId === user.userId">
+      {{ user.name }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="selectedUserId !== null">
+  <h2>To-Do Grid</h2>
+  <div *ngFor="let user of todoLists">
+    <div *ngIf="user.userId === selectedUserId">
+      <ul>
+        <li *ngFor="let todo of user.toDoList">
+          {{ todo.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>-->
+
+
+
+
+
+

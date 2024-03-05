@@ -133,6 +133,7 @@ namespace Rockfast.Dependencies
                 .Select(u => new UserTodoVM
                 {
                     UserId = u.UserId,
+                    Name = u.Name,
                     ToDoList = u.Todos.Select(t => new TodoVM
                     {
                         Id = t.Id,
@@ -147,6 +148,47 @@ namespace Rockfast.Dependencies
 
 
                 return userTodomodels;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HTTP Request Exception: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An Unexpected error occurred : {ex.Message}");
+                throw;
+            }
+
+
+        }
+
+        public async Task<IEnumerable<UserTodoVM>> GetToDoListAll()
+        {
+            try
+            {
+                var users = await this._database.Set<User>().ToListAsync();
+                var todos = await this._database.Set<Todo>().ToListAsync();
+
+                var userTodoList = from user in users
+                                   join todo in todos on user.UserId equals todo.UserId into userTodos
+                                   select new UserTodoVM
+                                   {
+                                       UserId = user.UserId,
+                                       Name = user.Name,
+                                       ToDoList = userTodos.Select(t => new TodoVM
+                                       {
+                                           Id = t.Id,
+                                           Name = t.Name,
+                                           DateCreated = t.DateCreated,
+                                           Complete = t.Complete,
+                                           DateCompleted = t.DateCompleted,
+                                           UserId = t.UserId
+                                       }).ToList()
+                                   };
+
+
+                return userTodoList;
             }
             catch (HttpRequestException ex)
             {
