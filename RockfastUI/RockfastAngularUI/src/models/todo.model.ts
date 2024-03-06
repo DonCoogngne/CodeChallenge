@@ -1,8 +1,9 @@
 export interface Todo {
-    userId : number;
+    id : number;
     name : string;
     DateCreated : Date;
-    Complete : boolean;
-    DateCompleted : Date;
-    UserId : number;
+    complete : boolean;
+    dateCompleted : Date;
+    userId : number;
+ 
 }

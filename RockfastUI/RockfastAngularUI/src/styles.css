@@ -3,4 +3,67 @@
 #leftDiv {
     background-color: lightblue;
     padding: 20px;
+    margin-left: 28rem; 
+            margin-right: 38rem; 
+            width: 300px; 
+            height: 200px; 
+            background-color: lightgray; 
+            padding: 1rem; 
+            box-sizing: border-box; 
+            border: 2px solid gray;
+}
+
+.my-5 {
+    margin-top: 30rem !important;
+    margin-bottom: 3rem !important;
+    margin-left: 15rem; 
+            margin-right: 5rem; 
+            width: 300px; 
+            height: 350px; 
+            background-color: lightgray; 
+            padding: 1rem; 
+            box-sizing: border-box; 
+            border: 2px solid gray;
+}
+
+
+.my-3 {
+    margin-top: -1rem !important;
+    margin-bottom: 9rem !important;
+    margin-left: -2rem;
+    margin-right: 1rem;
+    width: 300px;
+    height: 350px;
+    background-color: lightgray;
+    padding: 1rem;
+    box-sizing: border-box;
+    border: 2px solid gray;
+}
+
+.my-4 {
+    margin-top: 1rem !important;
+    margin-bottom: 3rem !important;
+    margin-left: 1rem; 
+            margin-right: 1rem; 
+            width: 300px; 
+            height: 350px; 
+            background-color: lightgray; 
+            padding: 1rem; 
+            box-sizing: border-box; 
+            border: 2px solid gray;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.coltd{
+    margin-top: -30rem !important;
+    margin-bottom: 3rem !important;
+    margin-left: 30rem;
+    margin-right: 1rem;
+    width: 350px;
+    height: 35px;
+    background-color: white;
+    padding: 1rem;
+    box-sizing: border-box;
+    border: 2px solid white;;
 }
