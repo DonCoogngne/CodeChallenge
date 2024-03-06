@@ -57,6 +57,7 @@ export class TodoComponent implements OnInit {
       next: (todoList) => {
         this.todoLists = todoList;
         this.selectedUserId = todoList[0].userId;
+        this.selectedTodoId = 1;
       },
       error: (response) => {
         console.log(response);
@@ -79,7 +80,6 @@ export class TodoComponent implements OnInit {
       this.todoService.getAllTodoList(id)
       .subscribe ({
         next : (response) => {
-          debugger;
           this.todoList = response;
         }
       });

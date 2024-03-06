@@ -18,4 +18,10 @@
     <ProjectReference Include="..\Rockfast.ViewModels\Rockfast.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="LogFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LogFolder\" />
+  </ItemGroup>
 </Project>

@@ -59,51 +59,54 @@
       <!-- <h2>Edit Todo</h2> -->
       <div *ngFor="let user of todoLists">
         <div *ngIf="user.userId === selectedUserId">
-          <div *ngIf="user.toDoList[0].userId == selectedUserId">
-            <form [formGroup]="todoForm"> 
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="id"  name="id" readonly style="display:none;" [(ngModel)]="user.toDoList[0].id" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <input type="text" formControlName="name" class="form-control" id="name" placeholder="Todo Name" name="name" [(ngModel)]="user.toDoList[0].name">
-                </div>
-              </div>
-              <br>
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  
-                  <input type="checkbox" value="" formControlName="complete"  name="complete"  [(ngModel)]="user.toDoList[0].complete">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Complete
-                  </label>
-                  <input matInput [matDatepicker]="picker" formControlName="dateCompleted" [(ngModel)]="user.toDoList[0].dateCompleted">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </div>
-              </div>
-              <br>
-             <div class="form-group row">
-              
-                  <div [class.selected]="selectedUserId === user.toDoList[0].userId">
-                    <select id="dropdown" name="dropdown" formControlName="userId" [(ngModel)]="user.toDoList[0].userId" >
-                      <option *ngFor="let user of usersList" [selected]="user.userId == 1" [value]="user.userId">{{ user.name }}</option>
-                    </select>
+
+          <div *ngIf="selectedTodoId !== null && selectedTodoId !== undefined">
+            <div *ngIf="user.toDoList[selectedTodoId]?.userId == selectedUserId"> 
+              <form [formGroup]="todoForm"> 
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id"  name="id" readonly style="display:none;" [(ngModel)]="user.toDoList[0].id" >
                   </div>
-              
-              </div>
-              <br>
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <button (click)="updateTodo(user.toDoList[0])" type="submit" class="btn btn-primary mr-5" style='margin-right:16px'>Update</button>
-                  <button type="submit" class="btn btn-danger" (click)="deleteTodo(user.toDoList[0].userId)">Delete</button>
                 </div>
-              </div>
-            
-            </form>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="Todo Name" name="name" [(ngModel)]="user.toDoList[selectedTodoId].name">
+                  </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    
+                    <input type="checkbox" value="" formControlName="complete"  name="complete"  [(ngModel)]="user.toDoList[selectedTodoId].complete">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Complete
+                    </label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateCompleted" [(ngModel)]="user.toDoList[selectedTodoId].dateCompleted">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </div>
+                </div>
+                <br>
+               <div class="form-group row">
+                
+                    <div [class.selected]="selectedUserId === user.toDoList[selectedTodoId].userId">
+                      <select id="dropdown" name="dropdown" formControlName="userId" [(ngModel)]="user.toDoList[selectedTodoId].userId" >
+                        <option *ngFor="let user of usersList" [selected]="user.userId == 1" [value]="user.userId">{{ user.name }}</option>
+                      </select>
+                    </div>
+                
+                </div>
+                <br>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button (click)="updateTodo(user.toDoList[selectedTodoId])" type="submit" class="btn btn-primary mr-5" style='margin-right:16px'>Update</button>
+                    <button type="submit" class="btn btn-danger" (click)="deleteTodo(user.toDoList[selectedTodoId].userId)">Delete</button>
+                  </div>
+                </div>
+              
+              </form>
             </div>
+          </div>
           </div>
         </div>
       </div>

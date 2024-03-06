@@ -12,8 +12,11 @@ namespace Rockfast.API.Controllers
     {
         private readonly ITodoService _todoService;
         private ILogger<TodosController> _logger;
-        public TodosController(ITodoService todoService, ILogger<TodosController> logger)
+        private readonly IWebHostEnvironment _webHostEnv;
+
+        public TodosController(ITodoService todoService, ILogger<TodosController> logger, IWebHostEnvironment webHostEnv)
         {
+            _webHostEnv = webHostEnv;
             this._todoService = todoService;
             this._logger = logger;
         }
@@ -22,6 +25,7 @@ namespace Rockfast.API.Controllers
         [Route("GetAll")]
         public async Task<IEnumerable<TodoVM>> Get()
         {
+            LogEvents.LogToFile("TodosController", "Get All TodoList", _webHostEnv);
             try
             {
                 var result = await this._todoService.GetAllAsync();
@@ -37,6 +41,7 @@ namespace Rockfast.API.Controllers
             }
             catch(Exception ex)
             {
+                LogEvents.LogToFile("TodosController Get All TodoList", ex.ToString(), _webHostEnv);
                 throw ex;
             }
             
@@ -47,6 +52,7 @@ namespace Rockfast.API.Controllers
         [Route("GetById")]
         public async Task<TodoVM> GetById(int id)
         {
+            LogEvents.LogToFile("TodosController", "Get Todo by Id", _webHostEnv);
             try
             {
                 var result = await this._todoService.GetByIdAsync(id);
@@ -56,6 +62,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController Get Todo by Id", ex.ToString(), _webHostEnv);
                 throw ex;
             }
 
@@ -65,6 +72,7 @@ namespace Rockfast.API.Controllers
         [Route("CreateTodo")]
         public async Task<TodoVM> Post(TodoVM model)
         {
+            LogEvents.LogToFile("TodosController", "Create Todo", _webHostEnv);
             try
             {
                 Todo dbmodel = new Todo();
@@ -79,6 +87,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController Create Todo", ex.ToString(), _webHostEnv);
                 throw ex;
             }
 
@@ -89,6 +98,7 @@ namespace Rockfast.API.Controllers
         [Route("UpdateTodo")]
         public async Task<ActionResult<TodoVM>> Put(TodoVM model)
         {
+            LogEvents.LogToFile("TodosController", "Update Todo", _webHostEnv);
             try
             {
                 Todo dbmodel = new Todo();
@@ -103,6 +113,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController Update Todo", ex.ToString(), _webHostEnv);
                 throw ex;
             }
 
@@ -113,6 +124,7 @@ namespace Rockfast.API.Controllers
         [Route("DeleteTodo")]
         public async Task<ActionResult> Delete(int id)
         {
+            LogEvents.LogToFile("TodosController", "Delete Todo", _webHostEnv);
             try
             {
                 await this._todoService.DeleteAsync(id);
@@ -120,6 +132,7 @@ namespace Rockfast.API.Controllers
             }           
              catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController Delete Todo", ex.ToString(), _webHostEnv);
                 throw ex;
             }
 
@@ -127,6 +140,7 @@ namespace Rockfast.API.Controllers
 
         private TodoVM CreateTodoVM(Todo model)
         {
+            LogEvents.LogToFile("TodosController", "CreateTodoVM", _webHostEnv);
             try
             {
                 TodoVM viewModel = new TodoVM();
@@ -140,6 +154,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController CreateTodoVM", ex.ToString(), _webHostEnv);
                 throw ex;
             }
         }
@@ -148,6 +163,7 @@ namespace Rockfast.API.Controllers
         [Route("GeUserTodoList")]
         public async Task<UserTodoVM> GetUserToDoList(int uerid)
         {
+            LogEvents.LogToFile("TodosController", "GetUserToDoList", _webHostEnv);
             try
             {
                 var result = await this._todoService.GetUserToDoList(uerid);
@@ -155,6 +171,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController GetUserToDoList", ex.ToString(), _webHostEnv);
                 throw ex;
             }
         }
@@ -163,6 +180,7 @@ namespace Rockfast.API.Controllers
         [Route("GeTodoListAll")]
         public async Task<IEnumerable<UserTodoVM>> GeTodoListAll()
         {
+            LogEvents.LogToFile("TodosController", "Get All Todo List Call", _webHostEnv);
             try
             {
                 var result = await this._todoService.GetToDoListAll();
@@ -170,6 +188,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController GeTodoListAll", ex.ToString(), _webHostEnv);
                 throw ex;
             }
         }
@@ -180,6 +199,7 @@ namespace Rockfast.API.Controllers
         {
             try
             {
+                LogEvents.LogToFile("TodosController", "Get All Users Call", _webHostEnv);
                 var result = await this._todoService.GetAllUserAsync();
                 List<UserVM> viewModels = new List<UserVM>();
 
@@ -195,6 +215,7 @@ namespace Rockfast.API.Controllers
             }
             catch (Exception ex)
             {
+                LogEvents.LogToFile("TodosController GetAllUsers", ex.ToString(), _webHostEnv);
                 throw ex;
             }
         }
